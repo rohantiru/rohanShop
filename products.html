@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5G4B3N77');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5G4B3N77"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Our Products</h1>
+        <div class="products">
+            <div class="product">
+                <img src="https://i.etsystatic.com/18975627/r/il/c6481c/5191179633/il_1588xN.5191179633_7cxg.jpg" alt="Rat Painting">
+                <h2>Rat Painting</h2>
+                <p>$100</p>
+                <button onclick="addToCart('Rat Painting', 100)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://i.etsystatic.com/40137072/r/il/96cdef/6358835909/il_1588xN.6358835909_seh8.jpg" alt="Bird Painting">
+                <h2>Bird Painting</h2>
+                <p>$150</p>
+                <button onclick="addToCart('Bird Painting', 150)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
