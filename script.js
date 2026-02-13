@@ -11,21 +11,33 @@ function updateCartCount() {
 }
 
 // Function to add an item to the cart
-function addToCart(name, price) {
-    if (cart[name]) {
-        cart[name].quantity++;
+// Updated: accepts productId (must match catalog feed ID) as first parameter
+function addToCart(productId, name, price) {
+    if (cart[productId]) {
+        cart[productId].quantity++;
     } else {
-        cart[name] = { price, quantity: 1 };
+        cart[productId] = { name, price, quantity: 1 };
     }
     updateCartCount();
     showNotification(`Added ${name} to cart!`);
     saveCartToLocalStorage();
+
+    // Fire AddToCart Pixel event with content_ids matching catalog feed
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'AddToCart', {
+            content_ids: [productId],
+            content_type: 'product',
+            contents: [{id: productId, quantity: 1}],
+            value: price,
+            currency: 'USD'
+        });
+    }
 }
 
 // Function to remove an item from the cart
-function removeFromCart(name) {
-    if (cart[name]) {
-        delete cart[name];
+function removeFromCart(productId) {
+    if (cart[productId]) {
+        delete cart[productId];
     }
     updateCartCount();
     saveCartToLocalStorage();
@@ -52,19 +64,20 @@ loadCartFromLocalStorage();
 function displayCartTable() {
     const cartTableBody = document.getElementById('cart-body');
     cartTableBody.innerHTML = '';
-    for (const name in cart) {
+    for (const productId in cart) {
+        const item = cart[productId];
         const row = document.createElement('tr');
         const nameCell = document.createElement('td');
-        nameCell.textContent = name;
+        nameCell.textContent = item.name;
         row.appendChild(nameCell);
         const priceCell = document.createElement('td');
-        priceCell.textContent = `$${cart[name].price}`;
+        priceCell.textContent = `$${item.price}`;
         row.appendChild(priceCell);
         const quantityCell = document.createElement('td');
-        quantityCell.textContent = cart[name].quantity;
+        quantityCell.textContent = item.quantity;
         row.appendChild(quantityCell);
         const totalCell = document.createElement('td');
-        totalCell.textContent = `$${cart[name].price * cart[name].quantity}`;
+        totalCell.textContent = `$${item.price * item.quantity}`;
         row.appendChild(totalCell);
         cartTableBody.appendChild(row);
     }
@@ -77,12 +90,52 @@ if (document.getElementById('cart-table')) {
 
 // Function to initiate checkout
 function initiateCheckout() {
+    // Fire InitiateCheckout Pixel event
+    if (typeof fbq !== 'undefined') {
+        const contentIds = Object.keys(cart);
+        let totalValue = 0;
+        const contents = [];
+        for (const productId in cart) {
+            const item = cart[productId];
+            totalValue += item.price * item.quantity;
+            contents.push({id: productId, quantity: item.quantity});
+        }
+        fbq('track', 'InitiateCheckout', {
+            content_ids: contentIds,
+            content_type: 'product',
+            contents: contents,
+            value: totalValue,
+            currency: 'USD',
+            num_items: contents.length
+        });
+    }
+
     // Redirect to the checkout page
     window.location.href = 'checkout.html';
 }
 
 // Function to complete purchase
 function completePurchase() {
+    // Fire Purchase Pixel event with content_ids before clearing cart
+    if (typeof fbq !== 'undefined') {
+        const contentIds = Object.keys(cart);
+        let totalValue = 0;
+        const contents = [];
+        for (const productId in cart) {
+            const item = cart[productId];
+            totalValue += item.price * item.quantity;
+            contents.push({id: productId, quantity: item.quantity});
+        }
+        fbq('track', 'Purchase', {
+            content_ids: contentIds,
+            content_type: 'product',
+            contents: contents,
+            value: totalValue,
+            currency: 'USD',
+            num_items: contents.length
+        });
+    }
+
     // Clear the cart
     cart = {};
     saveCartToLocalStorage();
