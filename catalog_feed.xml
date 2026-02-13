@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Art Gallery Product Catalog</title>
+    <link>https://rohantiru.github.io/rohanShop/</link>
+    <description>Product catalog for Art Gallery</description>
+
+    <item>
+      <g:id>rat_painting_001</g:id>
+      <g:title>Rat Painting</g:title>
+      <g:description>Beautiful original art piece featuring a charming rat with a painting easel. A unique collectible artwork perfect for art lovers and animal enthusiasts.</g:description>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>100.00 USD</g:price>
+      <g:link>https://rohantiru.github.io/rohanShop/</g:link>
+      <g:image_link>https://i.etsystatic.com/18975627/r/il/c6481c/5191179633/il_1588xN.5191179633_7cxg.jpg</g:image_link>
+      <g:brand>Art Gallery</g:brand>
+      <g:product_type>Art > Paintings > Animal Art</g:product_type>
+      <g:google_product_category>Arts &amp; Entertainment > Hobbies &amp; Creative Arts > Arts &amp; Crafts > Art &amp; Crafting Materials</g:google_product_category>
+    </item>
+
+    <item>
+      <g:id>bird_painting_002</g:id>
+      <g:title>Bird Painting</g:title>
+      <g:description>Stunning original art piece featuring a beautiful robin bird. A unique collectible artwork ideal for nature lovers and art collectors.</g:description>
+      <g:availability>in stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>150.00 USD</g:price>
+      <g:link>https://rohantiru.github.io/rohanShop/</g:link>
+      <g:image_link>https://i.etsystatic.com/40137072/r/il/96cdef/6358835909/il_1588xN.6358835909_seh8.jpg</g:image_link>
+      <g:brand>Art Gallery</g:brand>
+      <g:product_type>Art > Paintings > Animal Art</g:product_type>
+      <g:google_product_category>Arts &amp; Entertainment > Hobbies &amp; Creative Arts > Arts &amp; Crafts > Art &amp; Crafting Materials</g:google_product_category>
+    </item>
+
+  </channel>
+</rss>
